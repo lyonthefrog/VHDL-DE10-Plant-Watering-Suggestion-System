@@ -1,0 +1,22 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst adc_qsys.altpll_sys -pg 1 -lvl 2 -y 30
+preplace inst adc_qsys.modular_adc_0 -pg 1 -lvl 3 -y 110
+preplace inst adc_qsys -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst adc_qsys.modular_adc_0.control_internal -pg 1
+preplace inst adc_qsys.modular_adc_0.cb_inst -pg 1
+preplace inst adc_qsys.clk_50 -pg 1 -lvl 1 -y 50
+preplace inst adc_qsys.modular_adc_0.rst_inst -pg 1
+preplace inst adc_qsys.clock_bridge_sys -pg 1 -lvl 3 -y 250
+preplace netloc EXPORT<net_container>adc_qsys</net_container>(SLAVE)clk_50.clk_in_reset,(SLAVE)adc_qsys.reset) 1 0 1 NJ
+preplace netloc POINT_TO_POINT<net_container>adc_qsys</net_container>(SLAVE)modular_adc_0.adc_pll_locked,(SLAVE)altpll_sys.locked_conduit) 1 1 2 370 160 NJ
+preplace netloc EXPORT<net_container>adc_qsys</net_container>(SLAVE)modular_adc_0.command,(SLAVE)adc_qsys.modular_adc_0_command) 1 0 3 NJ 180 NJ 180 NJ
+preplace netloc EXPORT<net_container>adc_qsys</net_container>(SLAVE)adc_qsys.clk,(SLAVE)clk_50.clk_in) 1 0 1 NJ
+preplace netloc EXPORT<net_container>adc_qsys</net_container>(MASTER)modular_adc_0.response,(MASTER)adc_qsys.modular_adc_0_response) 1 3 1 NJ
+preplace netloc POINT_TO_POINT<net_container>adc_qsys</net_container>(MASTER)clk_50.clk,(SLAVE)altpll_sys.inclk_interface) 1 1 1 N
+preplace netloc FAN_OUT<net_container>adc_qsys</net_container>(SLAVE)modular_adc_0.reset_sink,(MASTER)clk_50.clk_reset,(SLAVE)altpll_sys.inclk_interface_reset) 1 1 2 350 200 NJ
+preplace netloc EXPORT<net_container>adc_qsys</net_container>(MASTER)clock_bridge_sys.out_clk,(MASTER)adc_qsys.clock_bridge_sys_out_clk) 1 3 1 NJ
+preplace netloc POINT_TO_POINT<net_container>adc_qsys</net_container>(SLAVE)modular_adc_0.adc_pll_clock,(MASTER)altpll_sys.c1) 1 2 1 590
+preplace netloc FAN_OUT<net_container>adc_qsys</net_container>(SLAVE)clock_bridge_sys.in_clk,(MASTER)altpll_sys.c0,(SLAVE)modular_adc_0.clock) 1 2 1 610
+levelinfo -pg 1 0 140 1030
+levelinfo -hier adc_qsys 150 180 400 720 850
